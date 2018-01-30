@@ -24,7 +24,7 @@
 
     1. Add Bootstrap to your index.html
 
-    2. Create a form that posts to a route on your express server
+    2. Create a form that posts to a route on your express server (Video#1-9:20)
 
     3. Write the values from the form post to a json file on your server
 

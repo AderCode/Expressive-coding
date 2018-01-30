@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/AderCode/Expressive-coding/issues"
   },
-  "homepage": "https://github.com/AderCode/Expressive-coding#readme"
+  "homepage": "https://github.com/AderCode/Expressive-coding#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }

@@ -1,12 +1,17 @@
-let div = document.createElement("div");
-let h1 = document.createElement("h1");
-let text = document.createTextNode("IT'S WORKING, IT'S WORKING, IT'S WORKING!!!");
+document.body.innerHTML = `
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7 mx-auto">
+                <form action="/team-name-submitted/" method="POST">
+                    <div class="form-group">
+                        <label for="team_name">Team Name:</label>
+                        <input type="text" class="form-control my-1" id="team_name" name="team_name" placeholder="What team!?" />           
+                        <input type="submit" class="btn btn-primary my-1" value="Submit" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    `;
 
-h1.prepend(text);
-div.prepend(h1);
-document.body.prepend(div);
-
-
-
-
-console.log(`Hopefully everything else worked.`)
+console.log(`Script end.`);

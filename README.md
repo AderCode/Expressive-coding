@@ -10,7 +10,7 @@
 
        1. Listen on port 3000
 
-    4. Use express.static to server files from a folder named 'public' in the root of your project
+    4. Use express.static to serve files from a folder named 'public' in the root of your project
 
         1. Create an index.html file
 

@@ -7,21 +7,6 @@ let app = express();
 
 let timestamp = new Date(Date.now());
 
-let teamJson = () => {
-  return fs.readFile(
-    path.join(__dirname, `../team_names.json`),
-    {
-      encoding: "UTF-8"
-    },
-    (err, res) => {
-      let teams = JSON.parse(res);
-      return teams;
-    }
-  );
-};
-
-let teamSubmits = teamJson;
-
 // Renamed frequently used stuff
 const publicPath = path.join(__dirname, "../public");
 
@@ -43,53 +28,23 @@ app.use(bp.urlencoded({ extended: false }));
 
 app.post(`/team-name-submitted`, (req, res, next) => {
   fs.readFile("team_names.json", function(err, data) {
-    // console.log('data = ', data)
     jsonData = JSON.parse(data);
-    // console.log('parsed data =', jsonData)
     jsonData.push({ team_name: req.body.team_name, submitted_on: timestamp });
     fs.writeFileSync("team_names.json", JSON.stringify(jsonData));
   });
 
-  // console.log(req.body.team_name);
-  // teamSubmits.push({
-  //         team_name: req.body.team_name,
-  //         submitted_on: timestamp
-  //     })
-
-  //     console.log(teamSubmits);
-  //   fs.appendFileSync(`team_names.json`, `${JSON.stringify({
-  //       team_name: req.body.team_name,
-  //       submitted_on: timestamp
-  //   })},\n`);
   res.send("Thank you for submitting your team name.");
   next();
 });
 
 app.get(`/formsubmissions`, (req, res, next) => {
-  let obj = fs.readFileSync("team_names.json", 'utf8');
-    console.log(obj);
-  //       fs.readFile(`team_names.json`,
-  //     {
-  //       encoding: "UTF-8"
-  //     },
-  //     (err, res) => {
-  //        res.send(`${JSON.parse(res)}`);
-  //     //   res.send(`${teams}`);
-  //     }
-  //   )
-
-  // let info = obj.map(team => {
-  //     return (
-  //         `Team: ${team.team_name} Submitted On: ${team.submitted_on}`
-  //     )
-  // })
-//   let array = [];
-//   obj.map(teamInfo => {
-//     array.push(`Team: ${teamInfo}`);
-//   });
-
-//   console.log(array)
-  res.send(`${obj}`);
+  let obj = fs.readFileSync("team_names.json", "utf8");
+  let parsedObj = JSON.parse(obj);
+  let array = [];
+  parsedObj.forEach(teamInfo => {
+    array.push(`Team: ${teamInfo.team_name}`);
+  });
+  res.send(`${array}`);
   next();
 });
 
